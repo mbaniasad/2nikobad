@@ -10,12 +10,13 @@ from subprocess import call
 globaldataset = "GAR-cls-acl10"
 
 classifiers= ["LSTM","DLSTM"]
-datasets = ["aclImdb"]
+datasets = ["GAR-cls-acl10","aclImdb"]
 number_of_words_used_in_embeddings = [10000]
 dropouts =[0.5]
-n_epochs =[15]
+n_epochs =[1]
 losss =['categorical_crossentropy']
-optimizers =['Momentum','sgd']
+optimizers =['AdaDelta','AdaGrad','adam','Ftrl','Momentum','sgd']
+
 
 lstm_options =(list(tup) for tup in  itertools.product(*[classifiers,datasets,number_of_words_used_in_embeddings,dropouts,
                             n_epochs,
