@@ -20,12 +20,13 @@ Links:
 from __future__ import division, print_function, absolute_import
 
 import tflearn
+import tensorflow as tf
 from tflearn.data_utils import to_categorical, pad_sequences
 from tflearn.datasets import imdb
 
 import sys
 from  LSTMconfig import LSTMconfig
-
+import traceback
 
 def runDLstm(cl):
     print("running Dynamic_lstm_on_", cl.setting_name())
@@ -62,11 +63,22 @@ def runDLstm(cl):
     model.fit(trainX, trainY, validation_set=(testX, testY), show_metric=True,
               batch_size=32, n_epoch=cl.n_epoch)
 
-    model.save("./SAVED_MODELS/"+cl.setting_name())
+    model.save("./5-SAVED_MODELS/"+cl.setting_name())
 
 
 
-print( 'Argument List:', str(sys.argv))
-print(sys.argv)
-cl = LSTMconfig(sys.argv[0],sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5],sys.argv[6])
-runDLstm(cl)
+
+
+tb = ''
+try:
+    print(sys.argv)
+    cl = LSTMconfig(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5],sys.argv[6],sys.argv[7])
+    runDLstm(cl)
+except:
+    tb = traceback.format_exc()
+    raise 
+else:
+    tb = "No error"
+finally:
+    print(tb)
+

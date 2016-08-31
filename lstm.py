@@ -54,4 +54,4 @@ def runLstm(lstm_configs):
             model.fit(trainX, trainY, validation_set=(testX, testY), show_metric=True,
                       batch_size=32, n_epoch=cl.n_epoch)
 
-            model.save("./SAVED_MODELS/"+cl.setting_name())
+            model.save("./5-SAVED_MODELS/"+cl.setting_name())
