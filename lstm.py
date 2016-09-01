@@ -26,32 +26,35 @@ import tensorflow as tf
 def runLstm(lstm_configs):
     for cl in lstm_configs:
         with tf.Graph().as_default():
-            print("running lstm_on_"+cl.setting_name())
-            # IMDB Dataset loading
-            train, test, _ = imdb.load_data(path=cl.dataset_path, n_words=cl.number_of_words_used_in_embedding,
-                                            valid_portion=0.1)
-            trainX, trainY = train
-            testX, testY = test
+            try:
+                print("running lstm_on_"+cl.setting_name())
+                # IMDB Dataset loading
+                train, test, _ = imdb.load_data(path=cl.dataset_path, n_words=cl.number_of_words_used_in_embedding,
+                                                valid_portion=0.1)
+                trainX, trainY = train
+                testX, testY = test
 
-            # Data preprocessing
-            # Sequence padding
-            trainX = pad_sequences(trainX, maxlen=100, value=0.)
-            testX = pad_sequences(testX, maxlen=100, value=0.)
-            # Converting labels to binary vectors
-            trainY = to_categorical(trainY, nb_classes=2)
-            testY = to_categorical(testY, nb_classes=2)
+                # Data preprocessing
+                # Sequence padding
+                trainX = pad_sequences(trainX, maxlen=100, value=0.)
+                testX = pad_sequences(testX, maxlen=100, value=0.)
+                # Converting labels to binary vectors
+                trainY = to_categorical(trainY, nb_classes=2)
+                testY = to_categorical(testY, nb_classes=2)
 
-            # Network building
-            net = tflearn.input_data([None, 100])
-            net = tflearn.embedding(net, input_dim=cl.number_of_words_used_in_embedding, output_dim=128)
-            net = tflearn.lstm(net, 128, dropout=cl.dropout)
-            net = tflearn.fully_connected(net, 2, activation='softmax')
-            net = tflearn.regression(net, optimizer=cl.optimizer, learning_rate=0.001,
-                                     loss=cl.loss)
+                # Network building
+                net = tflearn.input_data([None, 100])
+                net = tflearn.embedding(net, input_dim=cl.number_of_words_used_in_embedding, output_dim=128)
+                net = tflearn.lstm(net, 128, dropout=cl.dropout)
+                net = tflearn.fully_connected(net, 2, activation='softmax')
+                net = tflearn.regression(net, optimizer=cl.optimizer, learning_rate=0.001,
+                                         loss=cl.loss)
 
-            # Training
-            model = tflearn.DNN(net, tensorboard_verbose=0, tensorboard_dir='./tflearn_logs/'+cl.setting_name())
-            model.fit(trainX, trainY, validation_set=(testX, testY), show_metric=True,
-                      batch_size=32, n_epoch=cl.n_epoch)
+                # Training
+                model = tflearn.DNN(net, tensorboard_verbose=0, tensorboard_dir='./tflearn_logs/'+cl.setting_name())
+                model.fit(trainX, trainY, validation_set=(testX, testY), show_metric=True,
+                          batch_size=32, n_epoch=cl.n_epoch)
 
-            model.save("./5-SAVED_MODELS/"+cl.setting_name())
+                model.save("./5-SAVED_MODELS/"+cl.setting_name())
+            except Exception, e:
+                print(e)

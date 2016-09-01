@@ -15,6 +15,7 @@ datasetAddress = "../1-RAW-DS/"+datasetName+"/"
 destinationDir = "../2-DS/"+datasetName+"/"
 trainPositive = [datasetAddress + "train/pos/", destinationDir+"train-pos.txt"]
 trainNegitive = [datasetAddress + "train/neg/", destinationDir+"train-neg.txt"]
+trainNegitive = [datasetAddress + "train/unsup/", destinationDir+"train-unsup.txt"]
 testPositive = [datasetAddress + "test/pos/" ,destinationDir+"test-pos.txt"]
 testNegitive =[ datasetAddress + "test/neg/",destinationDir+"test-neg.txt"]
 

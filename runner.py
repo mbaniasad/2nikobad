@@ -12,8 +12,8 @@ globaldataset = "GAR-cls-acl10"
 classifiers= ["LSTM","DLSTM"]
 datasets = ["GAR-cls-acl10","aclImdb"]
 number_of_words_used_in_embeddings = [10000]
-dropouts =[0.5]
-n_epochs =[1]
+dropouts =[0.5, 0.2 ,0.8]
+n_epochs =[12]
 losss =['categorical_crossentropy']
 optimizers =['AdaDelta','AdaGrad','adam','Ftrl','Momentum','sgd']
 
