@@ -53,10 +53,12 @@ class LabeledLineSentence(object):
     def sentences_perm(self):
         shuffle(self.sentences)
         return self.sentences
-datasetName = "GAR-cls-acl10"
-datasetDir = "../2-DS/"+datasetName+"/"
-sources = {datasetDir+'test-neg.txt':'TEST_NEG', datasetDir+'test-pos.txt':'TEST_POS', datasetDir+'train-neg.txt':'TRAIN_NEG', datasetDir+'train-pos.txt':'TRAIN_POS',
-         datasetDir+'train-unsup.txt':'TRAIN_UNS'}
+datasetName = "EAR-cls-acl10-3000Sample/"
+datasetDir = "../3-PREPROCESSED/LOWER-NOPUNC/"+datasetName+"/"
+sources = {datasetDir+'test-neg.txt':'TEST_NEG', datasetDir+'test-pos.txt':'TEST_POS', 
+            datasetDir+'train-neg.txt':'TRAIN_NEG', 
+            datasetDir+'train-pos.txt':'TRAIN_POS',
+            datasetDir+'train-unsup.txt':'TRAIN_UNS'}
 
 sentences = LabeledLineSentence(sources)
 
