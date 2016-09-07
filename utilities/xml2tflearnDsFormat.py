@@ -53,19 +53,19 @@ for xmlfile in ['books/test.review','dvd/test.review','music/test.review']:
 			f.write(atype.find('text').text.encode('utf8'))
 			f.close()	
 
-counter=0
-for xmlfile in ['books/unlabeled.review', 'dvd/unlabeled.review', 'music/unlabeled.review']:
-	e = xml.etree.ElementTree.parse(xmlfile).getroot()
+# counter=0
+# for xmlfile in ['books/unlabeled.review', 'dvd/unlabeled.review', 'music/unlabeled.review']:
+# 	e = xml.etree.ElementTree.parse(xmlfile).getroot()
 
-	print xmlfile
-	for atype in e.findall('item'):
-		counter+=1
-		try:
-			f = open(train_unsup_address+"/"+str(counter)+"_"+atype.find('rating').text+".txt","w")
-			f.write(atype.find('text').text.encode('utf8'))
-		except:
-			print "error happend"	
-		else:	
-			f.close()
-			print counter
-print counter
+# 	print xmlfile
+# 	for atype in e.findall('item'):
+# 		counter+=1
+# 		try:
+# 			f = open(train_unsup_address+"/"+str(counter)+"_"+atype.find('rating').text+".txt","w")
+# 			f.write(atype.find('text').text.encode('utf8'))
+# 		except:
+# 			print "error happend"	
+# 		else:	
+# 			f.close()
+# 			print counter
+# print counter
