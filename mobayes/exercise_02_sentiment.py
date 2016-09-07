@@ -35,9 +35,10 @@ if __name__ == "__main__":
     # that is used when n_jobs != 1 in GridSearchCV
 
     # the training data folder must be passed as first argument
+    datasetName = "aclImdb"
     movie_reviews_data_folder = "./txt_sentoken/"
-    movie_reviews_data_folder = "/home/moo1366/Documents/uni/GuidedResearch/2nikobad/2-DS/EAR-cls-acl10/train"
-    movie_reviews_data_test_folder = "/home/moo1366/Documents/uni/GuidedResearch/2nikobad/2-DS/EAR-cls-acl10/test"
+    movie_reviews_data_folder = "../2-DS/"+datasetName+"/train"
+    movie_reviews_data_test_folder = "../2-DS/"+datasetName+"/test"
     dataset = load_files(movie_reviews_data_folder, shuffle=False)
     testDataset = load_files(movie_reviews_data_test_folder, shuffle=False)
     print("n_samples: %d" % len(dataset.data))
@@ -48,7 +49,7 @@ if __name__ == "__main__":
         dataset.data, dataset.target, test_size=0.025, random_state=None)
 
     docs_test, _, y_test, _ = train_test_split(
-        dataset.data, dataset.target, test_size=0, random_state=None)
+        testDataset.data, dataset.target, test_size=0, random_state=None)
 
 
     text_clf = Pipeline([('vect', CountVectorizer()),
