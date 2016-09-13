@@ -16,7 +16,7 @@ import numpy
 import random
 import tflearn
 from tflearn.data_utils import to_categorical
-
+from sklearn.utils import shuffle
 class config:
     
     def __init__(self,dataset_path,optimizer,loss):
@@ -71,16 +71,17 @@ for cl in doc2vec_configs:
             train_labels[pos_sample_count+i] = 0
 
         trainY = to_categorical(train_labels, nb_classes=2)
-        print "train_labels",train_labels
+        
 
         crossValidationPercent = 0.15
         validationPivot = int(trainX.shape[0]*crossValidationPercent) 
 
-
+        trainX,trainY = shuffle(trainX,trainY )
         sub_train_x = trainX[:-validationPivot]  
         sub_train_y = trainY[:-validationPivot]  
         sub_test_x = trainX[-validationPivot+1:]
         sub_test_y = trainY[-validationPivot+1:] 
+        
         
         
         # Network building
