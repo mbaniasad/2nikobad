@@ -1,5 +1,9 @@
+# -*- coding: utf-8 -*-
 import os 
 import xml.etree.ElementTree
+from motextpreprocessor import MoTextPreprocessor
+
+preprocessingConfig = dict(language = "de", stemming=False,removeUmlaut = True, lowerCase = True,removePunc=True)
 
 train_address= "train"
 test_address="test"
@@ -27,12 +31,16 @@ for xmlfile in ['books/train.review', 'dvd/train.review', 'music/train.review']:
 		if(atype.find('rating').text=="2.0" or atype.find('rating').text=="1.0"):
 			counter_neg+=1
 			f = open(train_neg_address+"/"+str(counter_neg)+"_"+atype.find('rating').text+".txt","w")
-			f.write(atype.find('text').text.encode('utf8'))
+			doc = atype.find('text').text
+			doc = MoTextPreprocessor.normalize(doc,**preprocessingConfig)
+			f.write(doc.encode("utf-8"))
 			f.close()
 		if(atype.find('rating').text=="4.0" or atype.find('rating').text=="5.0"):
 			counter_pos+=1
 			f = open(train_pos_address+"/"+str(counter_pos)+"_"+atype.find('rating').text+".txt","w")
-			f.write(atype.find('text').text.encode('utf8'))
+			doc = atype.find('text').text
+			doc = MoTextPreprocessor.normalize(doc,**preprocessingConfig)
+			f.write(doc.encode("utf-8"))
 			f.close()	
 counter_neg = 0
 counter_pos = 0
@@ -45,12 +53,16 @@ for xmlfile in ['books/test.review','dvd/test.review','music/test.review']:
 		if(atype.find('rating').text=="2.0" or atype.find('rating').text=="1.0"):
 			counter_neg+=1
 			f = open(test_neg_address+"/"+str(counter_neg)+"_"+atype.find('rating').text+".txt","w")
-			f.write(atype.find('text').text.encode('utf8'))
+			doc = atype.find('text').text
+			doc = MoTextPreprocessor.normalize(doc,**preprocessingConfig)
+			f.write(doc.encode("utf-8"))
 			f.close()
 		if(atype.find('rating').text=="4.0" or atype.find('rating').text=="5.0"):
 			counter_pos+=1
 			f = open(test_pos_address+"/"+str(counter_pos)+"_"+atype.find('rating').text+".txt","w")
-			f.write(atype.find('text').text.encode('utf8'))
+			doc = atype.find('text').text
+			doc = MoTextPreprocessor.normalize(doc,**preprocessingConfig)
+			f.write(doc.encode("utf-8"))
 			f.close()	
 
 # counter=0
@@ -62,7 +74,8 @@ for xmlfile in ['books/test.review','dvd/test.review','music/test.review']:
 # 		counter+=1
 # 		try:
 # 			f = open(train_unsup_address+"/"+str(counter)+"_"+atype.find('rating').text+".txt","w")
-# 			f.write(atype.find('text').text.encode('utf8'))
+# doc = MoTextPreprocessor.normalize(doc,**preprocessingConfig)
+# 			f.write(doc.encode("utf-8"))
 # 		except:
 # 			print "error happend"	
 # 		else:	

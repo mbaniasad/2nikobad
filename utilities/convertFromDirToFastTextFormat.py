@@ -3,6 +3,7 @@ import os
 import glob
 import string
 import string
+from motextpreprocessor import MoTextPreprocessor
 def readDatasFromDir(DirAddress):
     exclude = set(string.punctuation)
     sentences = []
@@ -21,8 +22,8 @@ def readDatasFromDir(DirAddress):
             sentences.append(s)
     os.chdir(currdir)
     return sentences
-datasetName="EAR-cls-acl10-3000Sample"
-datasetAddress = "../2-DS/GAR-cls-acl10/"
+datasetName="matelsoCalls"
+datasetAddress = "../2-DS/matelsoCalls/"
 destinationDir = "../3-PREPROCESSED/LOWER-NOPUNC/"+datasetName+"/"
 trainPositive = [datasetAddress + "train/pos/", destinationDir+"fastTextFomatTrain.txt", "__label__1"]
 trainNegitive = [datasetAddress + "train/neg/", destinationDir+"fastTextFomatTrain.txt","__label__0"]

@@ -5,18 +5,18 @@ import string
 import string
 import codecs
 from motextpreprocessor import MoTextPreprocessor
-preprocessingConfig = dict(language = "de", stemming=False,removeUmlaut = True, lowerCase = True,removePunc=True)
+preprocessingConfig = dict(language = "en", stemming=True,removeUmlaut = True, lowerCase = True,removePunc=True)
 
-datasetName="matelsoCalls1"
-datasetAddress = "../2-DS/"+datasetName+"/"
+datasetName="aclImdb"
+datasetAddress = "/home/moo1366/Documents/uni/GuidedResearch/2nikobad/3-PREPROCESSED/lower-nopunc-noumlaut-snowball-stemmed/aclImdb/"
 trainPositive = datasetAddress + "train/pos/"
 trainNegitive = datasetAddress + "train/neg/"
-# trainUnsuperviesd = datasetAddress + "train/unsup/", destinationDir+"train-unsup.txt"
-# testPositive = datasetAddress + "test/pos/"
-# testNegitive =datasetAddress + "test/neg/"
+# trainUnsuperviesd = datasetAddress + "train/unsup/"
+testPositive = datasetAddress + "test/pos/"
+testNegitive =datasetAddress + "test/neg/"
 
 addresses =[ trainPositive, trainNegitive , 
-             # testPositive, testNegitive
+             testPositive, testNegitive
            ]
 exclude = set(string.punctuation)
 
@@ -25,7 +25,7 @@ currdir = os.getcwd()
 for address in addresses:
     os.chdir(address)
     for filename in glob.glob("*.txt"):
-        # print filename
+        print filename
         doc = ""
         with codecs.open (filename,'r',encoding='utf8') as sourceFile:
             doc = sourceFile.read().replace('\n', '')    

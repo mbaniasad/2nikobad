@@ -8,8 +8,9 @@ import numpy as np
 from sklearn.utils import shuffle
 import random
 import scipy
-
-datasetName = "matelsocalls-lower-nopunc-noumlaut-snowball-stemmed"
+# "/home/moo1366/Documents/uni/GuidedResearch/2nikobad/3-PREPROCESSED/lower-nopunc-noumlaut/aclImdb"
+# "/home/moo1366/Documents/uni/GuidedResearch/2nikobad/3-PREPROCESSED/lower-nopunc-noumlaut-snowball-stemmed/aclImdb/test/neg"
+datasetName = "aclImdb"
 train_dir = "../3-PREPROCESSED/lower-nopunc-noumlaut-snowball-stemmed/"+datasetName+"/train"
 test_dir = "../3-PREPROCESSED/lower-nopunc-noumlaut-snowball-stemmed/"+datasetName+"/test"
 dataset = load_files(train_dir, shuffle=False)
@@ -57,10 +58,11 @@ def createWordFrequencyVectors(trainSentences, testSentences):
 train_x,test_x = createWordFrequencyVectors(dataset.data,testDataset.data)
 print train_x.shape[0]
 train_y = dataset.target
+test_y= testDataset.target
 
 #correcting destribution
 
-numer_of_shuffles=1000
+numer_of_shuffles=1
 finallres = []
 for i in range(numer_of_shuffles): 
 	res = []
@@ -78,10 +80,10 @@ for i in range(numer_of_shuffles):
 	validationPivot = int(train_x.shape[0]*crossValidationPercent) 
 
 
-	sub_train_x = train_x[:-validationPivot]  
-	sub_train_y = train_y[:-validationPivot]  
-	sub_test_x = train_x[-validationPivot+1:]
-	sub_test_y = train_y[-validationPivot+1:]  
+	sub_train_x = train_x#[:-validationPivot]  
+	sub_train_y = train_y#[:-validationPivot]  
+	sub_test_x = test_x#[-validationPivot+1:]
+	sub_test_y = test_y#[-validationPivot+1:]  
 
 	# # gnb = GaussianNB()#gausian bayes needs an array as
 	mnb = MultinomialNB()

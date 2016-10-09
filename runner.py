@@ -7,15 +7,15 @@ from subprocess import call
 
 
 
-globaldataset = "GAR-cls-acl10"
+globaldataset = "EAR-cls-acl10"
 
-classifiers= ["LSTM","DLSTM"]
-datasets = ["GAR-cls-acl10","aclImdb"]
+classifiers= ["DLSTM"]
+datasets = [globaldataset]
 number_of_words_used_in_embeddings = [10000]
-dropouts =[0.5, 0.2 ,0.8]
+dropouts =[0.2,0.5,0.8]
 n_epochs =[12]
 losss =['categorical_crossentropy']
-optimizers =['AdaDelta','AdaGrad','adam','Ftrl','Momentum','sgd']
+optimizers =['adam']
 
 
 lstm_options =(list(tup) for tup in  itertools.product(*[classifiers,datasets,number_of_words_used_in_embeddings,dropouts,
