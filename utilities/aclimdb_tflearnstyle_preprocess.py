@@ -111,23 +111,23 @@ def main():
 
     train_x_pos = grab_data(path+'train/pos', dictionary)
     
-    # train_x_neg = grab_data(path+'train/neg', dictionary)
-    # train_x = train_x_pos + train_x_neg
-    # train_y = [1] * len(train_x_pos) + [0] * len(train_x_neg)
+    train_x_neg = grab_data(path+'train/neg', dictionary)
+    train_x = train_x_pos + train_x_neg
+    train_y = [1] * len(train_x_pos) + [0] * len(train_x_neg)
 
-    # test_x_pos = grab_data(path+'test/pos', dictionary)
-    # test_x_neg = grab_data(path+'test/neg', dictionary)
-    # test_x = test_x_pos + test_x_neg
-    # test_y = [1] * len(test_x_pos) + [0] * len(test_x_neg)
+    test_x_pos = grab_data(path+'test/pos', dictionary)
+    test_x_neg = grab_data(path+'test/neg', dictionary)
+    test_x = test_x_pos + test_x_neg
+    test_y = [1] * len(test_x_pos) + [0] * len(test_x_neg)
 
-    # # f = open('../4-PKLED/'+dsName+'.pkl', 'wb')
-    # pkl.dump((train_x, train_y), f, -1)
-    # pkl.dump((test_x, test_y), f, -1)
-    # f.close()
+    f = open('../4-PKLED/'+dsName+'.pkl', 'wb')
+    pkl.dump((train_x, train_y), f, -1)
+    pkl.dump((test_x, test_y), f, -1)
+    f.close()
 
-    # f = open('../4-PKLED/'+dsName+'.dict.pkl', 'wb')
-    # pkl.dump(dictionary, f, -1)
-    # f.close()
+    f = open('../4-PKLED/'+dsName+'.dict.pkl', 'wb')
+    pkl.dump(dictionary, f, -1)
+    f.close()
 
 if __name__ == '__main__':
     main()

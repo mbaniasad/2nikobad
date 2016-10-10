@@ -19,10 +19,10 @@ def readDatasFromDir(DirAddress,number_of_samples):
             sentences.append(f.readline().strip())
     os.chdir(currdir)
     return sentences
-datasetName="matelsoCalls-noUmlaut-nopunct"
-number_of_samples = 3000
-datasetAddress = "../3-PREPROCESSED/lower-nopunc-noumlaut/"+datasetName+"/"
-destinationDir = "../3-PREPROCESSED/lower-nopunc-noumlaut/"+datasetName+"/"
+datasetName="aclImdb" #name of the datasets
+number_of_samples = 3000                    #max number of samples copied from each directory
+datasetAddress = "../3-PREPROCESSED/lower-nopunc-noumlaut-snowball-stemmed/"+datasetName+"/"
+destinationDir = "../3-PREPROCESSED/lower-nopunc-noumlaut-snowball-stemmed/"+datasetName+"/"
 if not os.path.exists(destinationDir):
     os.makedirs(destinationDir)
 

@@ -53,8 +53,8 @@ class LabeledLineSentence(object):
     def sentences_perm(self):
         shuffle(self.sentences)
         return self.sentences
-datasetName = "matelsoCalls-noUmlaut-nopunct"
-datasetDir = "../3-PREPROCESSED/lower-nopunc-noumlaut/"+datasetName+"/"
+datasetName = "aclImdb"
+datasetDir = "../3-PREPROCESSED/lower-nopunc-noumlaut-snowball-stemmed/"+datasetName+"/"
 sources = {datasetDir+'test-neg.txt':'TEST_NEG', datasetDir+'test-pos.txt':'TEST_POS', 
             datasetDir+'train-neg.txt':'TRAIN_NEG', 
             datasetDir+'train-pos.txt':'TRAIN_POS',

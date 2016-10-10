@@ -5,18 +5,17 @@ import sys
 from  LSTMconfig import LSTMconfig
 from subprocess import call
 
-
-
+#------------------------------- configuration variations
 globaldataset = "EAR-cls-acl10"
 
-classifiers= ["DLSTM"]
-datasets = [globaldataset]
-number_of_words_used_in_embeddings = [10000]
-dropouts =[0.2,0.5,0.8]
-n_epochs =[12]
-losss =['categorical_crossentropy']
-optimizers =['adam']
-
+classifiers= ["DLSTM", "LSTM"]  # choose between any in  ["DLSTM", "LSTM"]
+datasets = [globaldataset]      # the name of the dataset or datasets that would be used
+number_of_words_used_in_embeddings = [10] #number less than max unique words in the dataset
+dropouts =[0.9]                 #dropout number between 0 to 1
+n_epochs =[1]                   # number of epochs 
+losss =['categorical_crossentropy'] #loss function 
+optimizers =['adam']            # one of possible optimizers from {SGD, RMSProp, Adam, Momentum, AdaGrad, Ftrl, AdaDelta}
+#------------------------------- configuration variations
 
 lstm_options =(list(tup) for tup in  itertools.product(*[classifiers,datasets,number_of_words_used_in_embeddings,dropouts,
                             n_epochs,

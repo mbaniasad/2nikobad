@@ -26,16 +26,16 @@ class config:
         
     def setting_name(self):
         return 'doc2vec'+'ds-'+self.dataset_path +'optimizer-'+self.optimizer+'loss-'+str(self.loss)
-datasetName="aclImdb3000Sample"
+datasetName="aclImdb"
 d2v_dataset_file_name='./4-PKLED/'+datasetName+'.d2v'
 doc2vec_configs = [
                    config( datasetName, 'RMSProp', 'categorical_crossentropy'),
-                   config( datasetName, 'Momentum', 'categorical_crossentropy'),
-                   config( datasetName, 'AdaGrad', 'categorical_crossentropy'),
-                   config( datasetName, 'Ftrl', 'categorical_crossentropy'),
-                   config( datasetName, 'AdaDelta', 'categorical_crossentropy'),
-                   config( datasetName, 'sgd', 'categorical_crossentropy'),
-                   config( datasetName, 'adam', 'categorical_crossentropy')
+                   # config( datasetName, 'Momentum', 'categorical_crossentropy'),
+                   # config( datasetName, 'AdaGrad', 'categorical_crossentropy'),
+                   # config( datasetName, 'Ftrl', 'categorical_crossentropy'),
+                   # config( datasetName, 'AdaDelta', 'categorical_crossentropy'),
+                   # config( datasetName, 'sgd', 'categorical_crossentropy'),
+                   # config( datasetName, 'adam', 'categorical_crossentropy')
                    ]
 
 
@@ -48,7 +48,7 @@ for cl in doc2vec_configs:
         model = Doc2Vec.load(d2v_dataset_file_name)
 
         print model.docvecs[0]
-        number_of_samples = 6000;
+        number_of_samples = 6000; #number of samples in the datset. 
         half=number_of_samples/2
 
         trainX = numpy.zeros((number_of_samples, 100))
