@@ -1,0 +1,91 @@
+\begin{thebibliography}{10}
+
+\bibitem{einshams}
+H.~Korashy W.~Medhat, A.~Hassan.
+\newblock Sentiment analysis algorithms and applications: A survey.
+\newblock {\em Ain Shams Engineering Journal}, 5(4):1093–1113, 2014.
+
+\bibitem{naiveBayes}
+Harry Zhang.
+\newblock {The Optimality of Naive Bayes.}
+\newblock In Valerie Barr and Zdravko Markov, editors, {\em FLAIRS Conference}.
+  AAAI Press, 2004.
+
+\bibitem{explainW2V}
+Omer Goldberg, Yoav;~Levy.
+\newblock word2vec explained: Deriving mikolov et al.'s negative-sampling
+  word-embedding method.
+\newblock {\em arXiv:1402.3722}, 2014.
+
+\bibitem{enrichWordvecs-with-subwords}
+Piotr Bojanowski, Edouard Grave, Armand Joulin, and Tomas Mikolov.
+\newblock Enriching word vectors with subword information.
+\newblock {\em arXiv preprint arXiv:1607.04606}, 2016.
+
+\bibitem{imdbdataset}
+Andrew~L. Maas, Raymond~E. Daly, Peter~T. Pham, Dan Huang, Andrew~Y. Ng, and
+  Christopher Potts.
+\newblock Learning word vectors for sentiment analysis.
+\newblock In {\em Proceedings of the 49th Annual Meeting of the Association for
+  Computational Linguistics: Human Language Technologies}, pages 142--150,
+  Portland, Oregon, USA, June 2011. Association for Computational Linguistics.
+
+\bibitem{crosslinguistic-dataset}
+Peter Prettenhofer and Benno Stein.
+\newblock {Cross-Language Text Classification using Structural Correspondence
+  Learning}.
+\newblock In {\em 48th Annual Meeting of the Association of Computational
+  Linguistics (ACL 10)}, pages 1118--1127. Association for Computational
+  Linguistics, jul 2010.
+
+\bibitem{scikit-learn}
+F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel,
+  M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, J.~Vanderplas, A.~Passos,
+  D.~Cournapeau, M.~Brucher, M.~Perrot, and E.~Duchesnay.
+\newblock Scikit-learn: Machine learning in {P}ython.
+\newblock {\em Journal of Machine Learning Research}, 12:2825--2830, 2011.
+
+\bibitem{Graves2012}
+Alex Graves.
+\newblock {\em Supervised Sequence Labelling with Recurrent Neural Networks}.
+\newblock PhD thesis, Technische Universit¨at M¨unchen, 2012.
+
+\bibitem{UnreasonableRNN}
+Andrej Karpathy.
+\newblock The unreasonable effectiveness of recurrent neural networks, 2015.
+
+\bibitem{tflearn2016}
+Aymeric Damien et~al.
+\newblock Tflearn, 2016.
+
+\bibitem{tensorflow2015-whitepaper}
+Mart\'{\i}n Abadi, Ashish Agarwal, Paul Barham, Eugene Brevdo, Zhifeng Chen,
+  Craig Citro, Greg~S. Corrado, Andy Davis, Jeffrey Dean, Matthieu Devin,
+  Sanjay Ghemawat, Ian Goodfellow, Andrew Harp, Geoffrey Irving, Michael Isard,
+  Yangqing Jia, Rafal Jozefowicz, Lukasz Kaiser, Manjunath Kudlur, Josh
+  Levenberg, Dan Man\'{e}, Rajat Monga, Sherry Moore, Derek Murray, Chris Olah,
+  Mike Schuster, Jonathon Shlens, Benoit Steiner, Ilya Sutskever, Kunal Talwar,
+  Paul Tucker, Vincent Vanhoucke, Vijay Vasudevan, Fernanda Vi\'{e}gas, Oriol
+  Vinyals, Pete Warden, Martin Wattenberg, Martin Wicke, Yuan Yu, and Xiaoqiang
+  Zheng.
+\newblock {TensorFlow}: Large-scale machine learning on heterogeneous systems,
+  2015.
+\newblock Software available from tensorflow.org.
+
+\bibitem{efficentw2v}
+{Tomas Mikolov} {Kai Chen}~{Greg Corrado} {Jeffrey Dean}.
+\newblock Efficient estimation of word representations in vector space.
+\newblock {\em CoRR, abs/1301.3781}, 2013.
+
+\bibitem{gensim}
+Radim {\v R}eh{\r u}{\v r}ek and Petr Sojka.
+\newblock {Software Framework for Topic Modelling with Large Corpora}.
+\newblock In {\em {Proceedings of the LREC 2010 Workshop on New Challenges for
+  NLP Frameworks}}, pages 45--50, Valletta, Malta, May 2010. ELRA.
+
+\bibitem{Bag-of-Tricks}
+Armand Joulin, Edouard Grave, Piotr Bojanowski, and Tomas Mikolov.
+\newblock Bag of tricks for efficient text classification.
+\newblock {\em arXiv preprint arXiv:1607.01759}, 2016.
+
+\end{thebibliography}

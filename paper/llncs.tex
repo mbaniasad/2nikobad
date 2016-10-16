@@ -1,0 +1,84 @@
+% This is based on LLNCS.dem the demonstration file of
+% the LaTeX macro package from Springer-Verlag
+% for Lecture Notes in Computer Science,
+% version 2.4 for LaTeX2e as of 16. April 2010
+%
+% Modified by Gabriele Bleser, January 2013
+% Modified by Oliver Wasenmüller, March 2016
+% 
+% This is the Latex main document. If you need additional packages, 
+% you can insert them here. Otherwise you should not modify this.
+% Provide your contribution in a separate file, such as mypaper.tex.
+% All contributions will be included here.
+%
+
+\documentclass{llncs}
+
+% Include your packages here
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{listings}
+\usepackage{subfiles}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{url}
+\graphicspath{ {images/} }
+
+%\usepackage{makeidx}  % allows for indexgeneration
+
+\begin{document}
+%
+\frontmatter          % for the preliminaries
+%
+\pagestyle{headings}  % switches on printing of running heads
+%
+\begin{titlepage}
+\centering
+\Large Proceedings of Seminar and Project\\\vspace{1cm} 
+\LARGE TITLE\\\vspace{1cm} 
+\large SEMESTER\\
+\vspace{1cm}
+\large Oliver Wasenm\"uller and Prof. Didier Stricker\\
+
+\large Department Augmented Vision\\ University of Kaiserslautern and DFKI GmbH
+\end{titlepage}
+
+\chapter*{Introduction}
+%
+%To be filled by course organizer
+The seminar and project TITLE (INF-XX-XX-S-X, INF-XX-XX-L-X) are continuative courses based on and applying 
+the knowledge taught in the lectures 3D Computer Vision (INF-73-51-V-7) and Computer Vision: Object and People Tracking (INF-73-52-V-7). The goal of the project is to research, design, implement and evaluate
+algorithms and methods for tackling computer vision problems.
+The seminar is more theoretical. Its educational objective is to train the ability to become acquainted 
+with a specific research topic, review scientific articles and give a comprehensive presentation supported by media.
+
+In the XXX semester XXX, XXX projects addressing XXX were developed.
+Moreover, XXX seminar works addressed XXX.
+The results are documented in these proceedings.
+
+
+\section*{Organisers and supervisors}
+The courses are organised by the Department Augmented Vision (\url{http://ags.cs.uni-kl.de}), more specifically by:
+\begin{description}
+	\item[Oliver Wasenm\"uller]
+	\item[Prof. Dr. Didier Stricker] 
+\end{description}
+In the XXX semester XXX, the projects were supervised by the following department members:
+\begin{description}
+	\item[NAME]
+\end{description}
+
+\vspace{1cm}
+\begin{flushright}\noindent
+MONTH YEAR
+\end{flushright}
+%
+
+%
+%\tableofcontents
+%
+\mainmatter              % start of the contributions
+%
+\input{mypaper}
+%
+\end{document}
