@@ -22,8 +22,8 @@ def readDatasFromDir(DirAddress):
             sentences.append(s)
     os.chdir(currdir)
     return sentences
-datasetName="matelsoCalls"
-datasetAddress = "../2-DS/matelsoCalls/"
+datasetName="aclImdb"
+datasetAddress = "../2-DS/"+datasetName+"/"
 destinationDir = "../3-PREPROCESSED/LOWER-NOPUNC/"+datasetName+"/"
 trainPositive = [datasetAddress + "train/pos/", destinationDir+"fastTextFomatTrain.txt", "__label__1"]
 trainNegitive = [datasetAddress + "train/neg/", destinationDir+"fastTextFomatTrain.txt","__label__0"]

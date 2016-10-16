@@ -1,19 +1,19 @@
 from __future__ import division
 import fasttext
 
-epoch = 1000
+epoch = 10 #number of epochs
 ws=5 #size of context window
-word_ngrams=20
+word_ngrams=3 #ngfram
 
-datasetName = "EAR-cls-acl10-3000Sample"
+datasetName = "aclImdb"
 datasetDir = "../3-PREPROCESSED/LOWER-NOPUNC/"+datasetName+"/"
 train_file = datasetDir+"fastTextFomatTrain.txt"
 # Skipgram model
-# model = fasttext.supervised(train_file, datasetName+"-fasttextModel-skipGram-ws"+str(ws)+"-epoch"+str(epoch)+"-word_ngrams"+str(word_ngrams),ws=5,epoch = epoch,silent=0)
-model = fasttext.load_model("EAR-cls-acl10-3000Sample-fasttextModel-skipGram-ws"+str(ws)+"-epoch"+str(epoch)+"-word_ngrams"+str(word_ngrams)+".bin")
+model = fasttext.supervised(train_file, datasetName+"-fasttextModel-skipGram-ws"+str(ws)+"-epoch"+str(epoch)+"-word_ngrams"+str(word_ngrams),ws=5,epoch = epoch,silent=0)
+model = fasttext.load_model(datasetName+"-fasttextModel-skipGram-ws"+str(ws)+"-epoch"+str(epoch)+"-word_ngrams"+str(word_ngrams)+".bin")
 
 
-with open("../3-PREPROCESSED/LOWER-NOPUNC/EAR-cls-acl10-3000Sample/fastTextFomatTest.txt") as f:
+with open("../3-PREPROCESSED/LOWER-NOPUNC/"+datasetName+"/fastTextFomatTest.txt") as f:
 	texts=f.readlines()
 sentences = []
 labels = []	

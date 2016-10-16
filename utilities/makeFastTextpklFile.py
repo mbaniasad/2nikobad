@@ -37,7 +37,7 @@ def readDatasFromDir(DirAddress):
             sentences.append(s)
     os.chdir(currdir)
     return sentences
-datasetName="GAR-cls-acl10"
+datasetName="aclImdb"
 datasetAddress = "../2-DS/"+datasetName+"/"
 destinationDir = "../3-PREPROCESSED/LOWER-NOPUNC/"+datasetName+"/"
 trainPositive = [datasetAddress + "train/pos/", destinationDir+"fastTextFomatTrain.csv", "1"]
@@ -52,8 +52,8 @@ exclude = set(string.punctuation)
 addresses =[ trainPositive, trainNegitive ]
 train = []
 train_label = []
-
-fastTextmodel = fasttext.load_model('../5-SAVED_MODELS/FastTextModel-GAR-cls-acl10.train.bin')
+fastTextmodelAddress = "aclImdb-fasttextModel-skipGram-ws5-epoch10-word_ngrams3.bin" # file address for fasttext model bin file
+fastTextmodel = fasttext.load_model(fastTextmodelAddress)
 for directoryAddress,filename,label in addresses:
     with open (filename,'a') as destinationFile:
         print(filename)
@@ -70,7 +70,7 @@ addresses =[ testPositive, testNegitive ]
 test = []
 test_label = []
 
-fastTextmodel = fasttext.load_model('../5-SAVED_MODELS/FastTextModel-GAR-cls-acl10.train.bin')
+fastTextmodel = fasttext.load_model(fastTextmodelAddress)
 for directoryAddress,filename,label in addresses:
     with open (filename,'a') as destinationFile:
         print(filename)
