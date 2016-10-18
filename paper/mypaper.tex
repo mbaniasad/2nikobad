@@ -90,23 +90,39 @@ First section after introduction we talk about the chosen datasets, in order to 
 	\end{figure}
 	
 	\paragraph
-	One important observation in this experiment was: Naive-Bayes has competitive and sometimes even better results than ANN based methods. But for the call data dataset where there seems to be not enough samples for training a Bayes classifier and the number of shared words in negative and positive training samples are considerably high, it can not compete with the other methods. Specially we have to consider the fact that Bayes method can not utilize the potential of unlabeled data. It would also have the problem of giving a probability to the new words that have never occurred in the training dataset. Also we have to consider that the input of this method for our system would come from an automated speech-to-text system which mean the possibility of having words that are completely out of language vocabulary is very very low. We can also argue the number of words that are used in conversations are much more limited than words used in a written context. We are also assuming that there should be words in conversations of one class that would never occur in the other concept for example in the context of selling products and posting it, words for describing the address would be very less likely to happen in the 'NOT\_SALE' labeled item. This means that we should not completely take the Bayes algorithm off the choices and we should do another experiment with Bayes when more data is available.
+	One important observation in this experiment is the fact that Naive-Bayes has competitive and sometimes even better results than ANN based methods. But for the call data dataset where there seems to be not enough samples for training a Bayes classifier and the number of shared words in negative and positive training samples are considerably high, it can not compete with the other methods. Specially we have to consider the fact that Bayes method can not utilize the potential of unlabeled data. It would also have the problem of giving a probability to the new words that have never occurred in the training dataset. Also we have to consider that the input of this method for our system would come from an automated speech-to-text system which mean the possibility of having words that are completely out of language vocabulary is very very low. We can also argue the number of words that are used in conversations are much more limited than words used in a written context. We are also assuming that there should be words in conversations of one class that would never occur in the other concept for example in the context of selling products and posting it, words for describing the address would be very less likely to happen in the 'NOT\_SALE' labeled item. This means that we should not completely take the Bayes algorithm off the choices and we should do another experiment with Bayes when more data is available.
 	
 	\subsection*{ANN based methods}
-	ANN(Artificial Neural Networks) and it's variant RNN(Recurrent Neural Networks) based methods specially LSTM have recently shown very good result in almost all the AI problems related to a sequence labeling \cite{Graves2012} \cite{UnreasonableRNN}. To be able to apply them, we have used the adapted code from tflearn library\cite{tflearn2016}(a deep-learning library built on top of Tensorflow\cite{tensorflow2015-whitepaper}) which is using a word embedding layer to transfer text documents into a vector representation. These vectors of words are next fed to an ANN network which at the end was connected to a soft-max layer where the positivity or negativity is decided. There are many hyper parameters that can affect the results of the classifier. Parameters like Optimizer function, Number of epochs(an epoch is a complete training pass through a given dataset), dropout (drop out is a regularization technique where some of the node outputs are randomly set to zero to prevent over-fitting). To find the best hyper parameters and best network architecture we have used several varieties of possible ANN networks. An LSTM(Long Sort Term Memory) network which is a recurrent neural network, A dynamic LSTM network which is an LSTM where the length of input vectors can differ, and a BDRNN(bidirectional recurrent neural network) where it uses the future input in a sequence as well as past input for prediction. We have also tried to find the best hyper parameters for Optimizer function, number of epochs and dropout percentage. We have found that a reasonable number of epochs is 12 and the best optimizer for these methods is adam. We have also realized the optimal number for dropout is dependent on the dataset. figure \ref{fig:dropoutOnAccuracy} .
-	\begin{figure}[!ht]
+	ANN(Artificial Neural Networks) and it's variant RNN(Recurrent Neural Networks) based methods specially LSTM have recently shown very good result in almost all the AI problems related to a sequence labeling \cite{Graves2012} \cite{UnreasonableRNN}. To be able to apply them, we have used the adapted code from tflearn library\cite{tflearn2016}(a deep-learning library built on top of Tensorflow\cite{tensorflow2015-whitepaper}) which is using a word embedding layer to transfer text documents into a vector representation. These vectors of words are next fed to an ANN network which at the end was connected to a soft-max layer where the positivity or negativity is decided. There are many hyper parameters that can affect the results of the classifier. Parameters like Optimizer function, Number of epochs(an epoch is a complete training pass through a given dataset), dropout (drop out is a regularization technique where some of the node outputs are randomly set to zero to prevent over-fitting). To find the best hyper parameters and best network architecture we have used several varieties of possible ANN networks. An LSTM(Long Sort Term Memory) network which is a recurrent neural network, A dynamic LSTM network which is an LSTM where the length of input vectors can differ, and a BDRNN(bidirectional recurrent neural network) where it uses the future input in a sequence as well as past input for prediction.\\ 
+	To find the best hyper parameters for Optimizer function, we have run the LSTM, BDLST, DLSTM on all the datasets and the results were not dependent on the dataset or the ANN architecture used. Figure \ref{fig:choosingOpitmizer} shows representative result of the mentioned experiment where it illustrates other not only optimizers are not competitive with adam they are on the base line of randomness. maybe prolonging the learning duration eventually lead to convergence of the mentioned methods but this would consume a lot of time and memory resource which is not suggestible.\\
+
+	\begin{figure}
 		\centering
-		\includegraphics[scale=0.28]{dropoutOnAccuracy}
-		\caption{effect of dropout in accuracy on different dataset}
-		\label{fig:dropoutOnAccuracy}
+		\includegraphics[scale=0.30]{choosingOpitmizer}
+		\caption{LSTM accuracy on IMDB reviews dataset using different optimizers}
+		\label{fig:choosingOpitmizer}
 	\end{figure}
+	To find the best number of epochs for the experiments we have compared the best curves on the datasets and realized that 12 epochs can be a reasonable number. Results in the  figure \ref{fig:selectingEpochs} shows classier converges much earlier on aclIMDB dataset which gives us a hint about later comparison between the results of classification on datasets. One possible reason for faster convergence here can be the fact that aclIMDB reviews are all reviews about the same category, while the other datasets are reviews about three different categories.
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.40]{selectingEpochs}
+			\caption{LSTM accuracy on IMDB reviews dataset using different optimizers}
+			\label{fig:selectingEpochs}
+		\end{figure}\\
+	The experiment for finding the best dropout was the one with the most unexpected results. Our assumption was the dropout should have an almost static nature were above a certain number causes data loss and reduced accuracy and bellow a certain number would cause over-fitting and thus reduced accuracy. To our surprise optimal dropout number is highly Dependant on the nature of data-set.figure \ref{fig:dropoutOnAccuracy} .
 	One very interesting observation here was that for GAR(German amazon reviews) dataset, the best drop out was 80\% which is a considerably high number. Another observation is accuracy on German dataset never reaches the accuracy on it's English counterpart which could be due to the German grammar or inflections in German language.
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.28]{dropoutOnAccuracy}
+			\caption{effect of dropout in accuracy on different dataset}
+			\label{fig:dropoutOnAccuracy}
+		\end{figure}
 	\subsection*{vectorized representations of Word and document} 
 	The third approach taken in this paper is based on top of embedding algorithms that are utilizing the probability of word distribution regarding their neighbors. These method are transferring words to a high dimensional space where many syntactic and semantic features are captured in the form of distance\cite{explainW2V}. Figure \ref{fig:word2vec-gender-relation}.
 	\begin{figure}
 		\centering
 		\includegraphics[scale=0.70]{word2vec-gender-relation}
-		\caption{Captured semantic cinformation in the form of distance using word2vec algorithm}
+		\caption{Captured semantic information in the form of distance using word2vec algorithm}
 		\label{fig:word2vec-gender-relation}
 	\end{figure}
 	
@@ -124,9 +140,16 @@ First section after introduction we talk about the chosen datasets, in order to 
 		\end{tabular}
 		\caption{doc2vec accuracy over different datasets}
 		\label{tbl:doc2vec-accuracy-datasets}
-	\end{table}
+	\end{table}\\
 	\paragraph*
-	the main advantages of this method is the possibility to do unsupervised learning for learning the word vectors which even can be done on other available data from the same language. The second advantage of this method is its fast classifier train time. Also train time for the embedding layer is time and memory exhaustive. Results shows very good output for the aclIMDB dataset which should be due to its relatively large number of available train data. The good results for call-data dataset is our main concern. It seems there are features in this dataset that doc2vec method can exploit. Finding the reasons behind the good results with doc2vec method and trying to improve it can be a part of future works.
+	the main advantages of this method is the possibility to do unsupervised learning for learning the word vectors which even can be done on other available data from the same language. The second advantage of this method is its fast classifier train time. Also train time for the embedding layer is time and memory exhaustive. Results shows very good output for the aclIMDB dataset which should be due to its relatively large number of available train data. The good results for call-data dataset is our main concern. It seems there are features in this dataset that doc2vec method can exploit. Finding the reasons behind the good results with doc2vec method and trying to improve it can be a part of future works.\\
+	One of the concerns that we had about the doc2vec method was, is it conserves the semantic shape of the document? by semantic shape we mean the relation between different parts of text. To confirm this we have fed the output of doc2vec to a LSTM layer and then to a softmax. We assumed if there is relation between the features extracted by doc2vec the learning curve would have a smooth increasing over time. We also wanted to see how adding an LSTM would affect the classifier's results. figure \ref{fig:LSTMdoc2vec} shows that using an LStM layer makes the predictions worse then the previous experiment. The fluctuating values also shows that there is no sequence shape conservation in doc2vec which closes the possibility to use sequence learning approaches on top of doc2vec.\\
+	\begin{figure}
+		\centering
+		\includegraphics[scale=0.50]{LSTMdoc2vec}
+		\caption{Accuracy of LSTM classifier on top doc2vec input}
+		\label{fig:LSTMdoc2vec}
+	\end{figure}
 	\paragraph*
 	Fasttext library\cite{enrichWordvecs-with-subwords}\cite{Bag-of-Tricks} which is the latest try of Facebook for getting an efficient representation of word in vector space is also another method which has been used here for comparison. Fast text library comes with an inbuilt text classifier which we have used to compare it with the out put of Doc2vec-logistic classifier. The most important advantage of facebook fasttext is, very time and memory efficient implementation of the algorithm, where training and testing time is remarkably fast. Table \ref{tbl:fasttext-accuracy-datasets } shows the results of using fast-text algorithm for classification
 	\begin{table}

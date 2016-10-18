@@ -25,7 +25,7 @@ class config:
         self.dropout = 0.5
         self.number_of_cells=number_of_cells
     def setting_name(self):
-        return 'doc2vecLSTM'+str(cl.number_of_cells)+'ds-'+self.dataset_path +'optimizer-'+self.optimizer+'loss-'+str(self.loss)
+        return 'doc2vecLSTMN'+str(cl.number_of_cells)+'ds-'+self.dataset_path +'optimizer-'+self.optimizer+'loss-'+str(self.loss)
 
 
 doc2vec_configs = [
@@ -36,7 +36,7 @@ doc2vec_configs = [
                    # config( 'imdb.d2v', 'AdaDelta', 'categorical_crossentropy'),
                    # config( 'imdb.d2v', 'sgd', 'categorical_crossentropy'),
                    # config( 'GAR-cls-acl10.d2v', 'adam', 'categorical_crossentropy',1000),
-                   config( 'GAR-cls-acl10.d2v', 'adam', 'categorical_crossentropy',10000)
+                   config( 'GAR-cls-acl10.d2v', 'adam', 'categorical_crossentropy',3000)
                    ]
 
 
@@ -85,5 +85,5 @@ for cl in doc2vec_configs:
         net = tflearn.regression(net, optimizer=cl.optimizer, learning_rate=0.001, loss=cl.loss)
 
         # # Training
-        model = tflearn.DNN(net, tensorboard_verbose=0, tensorboard_dir='./tflearn_logs/'+cl.setting_name())
-        model.fit(trainX, trainY, validation_set=(testX, testY), show_metric=True, batch_size=32, n_epoch=20)
+        model = tflearn.DNN(net, tensorboard_verbose=0, tensorboard_dir=cl.setting_name())
+        model.fit(trainX, trainY, validation_set=(testX, testY), show_metric=True, batch_size=32, n_epoch=40)
