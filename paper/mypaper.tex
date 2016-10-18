@@ -105,8 +105,8 @@ First section after introduction we talk about the chosen datasets, in order to 
 	To find the best number of epochs for the experiments we have compared the best curves on the datasets and realized that 12 epochs can be a reasonable number. Results in the  figure \ref{fig:selectingEpochs} shows classier converges much earlier on aclIMDB dataset which gives us a hint about later comparison between the results of classification on datasets. One possible reason for faster convergence here can be the fact that aclIMDB reviews are all reviews about the same category, while the other datasets are reviews about three different categories.
 		\begin{figure}
 			\centering
-			\includegraphics[scale=0.40]{selectingEpochs}
-			\caption{LSTM accuracy on IMDB reviews dataset using different optimizers}
+			\includegraphics[scale=0.50]{selectingEpochs}
+			\caption{Best Leaning curves for each dataset and the number of epochs used }
 			\label{fig:selectingEpochs}
 		\end{figure}\\
 	The experiment for finding the best dropout was the one with the most unexpected results. Our assumption was the dropout should have an almost static nature were above a certain number causes data loss and reduced accuracy and bellow a certain number would cause over-fitting and thus reduced accuracy. To our surprise optimal dropout number is highly Dependant on the nature of data-set.figure \ref{fig:dropoutOnAccuracy} .
